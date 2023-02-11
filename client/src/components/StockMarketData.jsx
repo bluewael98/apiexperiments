@@ -14,42 +14,49 @@ function StockMarketData() {
     });
   }, [url]);
 
-  function ColorNumber({ number }) {
-    let color = "green";
-    if (number < 0) {
-      color = "red";
-    }
-  }
   return (
-    <div className=" h-[250px] w-[400px] bg-white rounded-lg flex flex-col">
-      <div className="flex justify-between items-center">
-        <img src={teslatext} alt="tesla text" className="w-[100px] mt-5 ml-5" />
+    <div className=" h-[400px] bg-neoblue w-[400px] font-Oswald my-10 rounded-full border-solid border-t-4 border-r-[12px] border-b-[12px] border-l-4 border-black shadow-4xl flex flex-col items-center justify-center">
+      {/* STOCK LOGO */}
+      <div className="flex justify-center items-center align-top">
+        <img
+          src={teslatext}
+          alt="tesla text"
+          className="w-[200px] h-[80px] object-cover"
+        />
       </div>
 
-      <div className="flex justify-start flex-col ">
-        <p className=" ml-5 text-xl">TSLA</p>
-        <p className=" ml-5 text-xl font-semibold">
-          Price:{" "}
-          <span className="">
-            {" "}
-            ${data.data && data.data.find((d) => d.ticker === "TSLA")["price"]}
-          </span>
-        </p>
-      </div>
-
-      <div>
-        <p>
-          {data.data && data.data.find((d) => d.ticker === "TSLA")["day_low"]}
-        </p>
-        <p>
-          {data.data && data.data.find((d) => d.ticker === "TSLA")["day_high"]}
-        </p>
-      </div>
-      <div>
-        <p>
-          {data.data &&
-            data.data.find((d) => d.ticker === "TSLA")["day_change"]}
-        </p>
+      <div className=" bg-neogreen w-[300px] h-[300px] rounded-full flex align-bottom truncate flex-col">
+        {/* STOCK NAME & PRICE */}
+        <div className="flex justify-between mx-10 mt-20
+        ">
+          <p className="text-xl font-semibold">TSLA</p>
+          <p className="text-xl font-semibold">
+            Price:{" "}
+            <span className="">
+              {" "}
+              $
+              {data.data && data.data.find((d) => d.ticker === "TSLA")["price"]}
+            </span>
+          </p>
+        </div>
+        {/* 24H STATS */}
+        <div className="flex flex-col align-middle justify-center items-center mt-5 leading-10  mx-10 font-semibold text-xl">
+          <p>
+            24H Low:
+            {data.data && data.data.find((d) => d.ticker === "TSLA")["day_low"]}
+          </p>
+          <p>
+            24H High:
+            {data.data &&
+              data.data.find((d) => d.ticker === "TSLA")["day_high"]}
+          </p>
+          <p>
+            24h Change:{" "}
+            {data.data &&
+              data.data.find((d) => d.ticker === "TSLA")["day_change"]}
+            %
+          </p>
+        </div>
       </div>
     </div>
   );
